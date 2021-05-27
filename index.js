@@ -1,5 +1,6 @@
 const profileContainer = document.querySelector("#profile-details-container");
 const form = document.querySelector(".input-section");
+
 const getProfileDetails = (username) =>
   `{
     repositoryOwner(login: "${username}"){
@@ -26,25 +27,13 @@ const getProfileDetails = (username) =>
   }
 }`;
 
-// forkCount: 0;
-// languages: {
-//   nodes: Array(1);
-// }
-// name: "Blockchain";
-// pushedAt: "2020-03-17T19:20:18Z";
-// stargazerCount: 0;
-// url: "https://github.com/Funmi7/Blockchain";
-
-// languages:
-// nodes: Array(1)
-// 0: {name: "Python"}
-
+const myToken = config.GITHUB_ACCESS_TOKEN;
 const username = "Funmi7";
 const options = {
   method: "post",
   headers: {
     "Content-Type": "application/json",
-    Authorization: "Bearer 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",
+    Authorization: `Bearer ${myToken}`,
   },
   body: JSON.stringify({
     query: getProfileDetails(username),
@@ -55,6 +44,11 @@ fetch(`https://api.github.com/graphql`, options)
   // .then((data) => console.log(data.data))
   .then((data) => appendData(data.data))
   .catch((error) => console.log(error.error));
+
+// form.reset();
+// };
+
+// form.addEventListener("submit", loadProfileData);
 
 const appendData = (data) => {
   const bio = document.createElement("div");

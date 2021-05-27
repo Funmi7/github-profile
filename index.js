@@ -28,29 +28,35 @@ const getProfileDetails = (username) =>
 }`;
 
 const myToken = config.GITHUB_ACCESS_TOKEN;
-const username = "Funmi7";
-const options = {
-  method: "post",
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${myToken}`,
-  },
-  body: JSON.stringify({
-    query: getProfileDetails(username),
-  }),
+// const username = "Funmi7";
+const loadProfileData = (e) => {
+  e.preventDefault();
+  const username = form.elements["search"].value;
+  const options = {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${myToken}`,
+    },
+    body: JSON.stringify({
+      query: getProfileDetails(username),
+    }),
+  };
+  fetch(`https://api.github.com/graphql`, options)
+    .then((res) => res.json())
+    // .then((data) => console.log(data.data))
+    .then((data) => appendData(data.data))
+    .catch((error) => console.log(error.error));
+
+  form.reset();
 };
-fetch(`https://api.github.com/graphql`, options)
-  .then((res) => res.json())
-  // .then((data) => console.log(data.data))
-  .then((data) => appendData(data.data))
-  .catch((error) => console.log(error.error));
 
-// form.reset();
-// };
-
-// form.addEventListener("submit", loadProfileData);
+form.addEventListener("submit", loadProfileData);
 
 const appendData = (data) => {
+  while (profileContainer.firstChild) {
+    profileContainer.removeChild(profileContainer.firstChild);
+  }
   const bio = document.createElement("div");
   const avatar = document.createElement("img");
   const repoCards = document.createElement("div");

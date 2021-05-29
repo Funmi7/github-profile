@@ -132,6 +132,10 @@ table {
 html {
   font-size: 62.5%;
 }
+p {
+  font-size: 1.4rem;
+  color: #24292e;
+}
 
 header {
   background: #24292e;
@@ -153,6 +157,10 @@ header {
 h1 {
   font-size: 2rem;
   color: white;
+}
+
+h2 {
+  font-size: 3.2rem;
 }
 .home-container {
   max-width: 1400px;
@@ -184,4 +192,59 @@ h1 {
   margin-left: 10px;
   color: white;
   border: none;
+}
+
+#profile-details-container {
+  display: flex;
+  margin-top: 30px;
+  padding-top: 20px;
+}
+.left-segment {
+  width: 30%;
+}
+.image-container {
+  width: 260px;
+  height: 260px;
+  margin-bottom: 20px;
+}
+
+.image-container img {
+  max-width: 100%;
+  border-radius: 50%;
+}
+.left-segment .username-text {
+  font-size: 2rem;
+  color: #586069;
+  margin-top: 10px;
+}
+.left-segment p {
+  font-size: 1.6rem;
+  width: 70%;
+  margin-top: 20px;
+}
+
+.right-segment {
+  /* border-top: 1px solid #ebedef; */
+  width: 67%;
+  padding-top: 20px;
+}
+.right-segment .repo-card {
+  padding: 20px 0px;
+  border-top: 1px solid #ebedef;
+}
+
+.right-segment .lower-card-content {
+  display: flex;
+  margin-top: 20px;
+}
+.right-segment a {
+  text-decoration: none;
+  color: #0366d6;
+  font-size: 2rem;
+}
+.language-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 4px;
 }
